@@ -15,6 +15,12 @@
   .card-container:hover {
     transform: scale(1.05);
   }
+  .MuiDialog-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   @media screen and (max-width: 600px){
     .card-container{
      

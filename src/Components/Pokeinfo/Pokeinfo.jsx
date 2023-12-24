@@ -1,53 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './Pokeinfo.css';
-import axios from 'axios';
+import { LinearProgress } from '@mui/material';
 
 const Pokeinfo = ({ data }) => {
-  const [pokemonDetails, setPokemonDetails] = useState(null);
+    const [pokemonInfo, setPokemonInfo] = useState(null);
 
-  useEffect(() => {
-    if (data) {
-      axios.get(data.url)
-        .then((response) => {
-          setPokemonDetails(response.data);
-        })
-        .catch((error) => {
-          console.error('Error fetching Pokemon details:', error);
-        });
-    }
-  }, [data]);
+    useEffect(() => {
+        const fetchPokemonData = async () => {
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${data}`);
+                const pokemonData = await response.json();
+                setPokemonInfo(pokemonData);
+            } catch (error) {
+                console.error("Error fetching Pokemon data:", error);
+            }
+        };
 
-  return (
-    <div className="poke-info">
-      {
-        !pokemonDetails ? <div>Loading...</div> :
-          <>
-            <h1>{pokemonDetails.name}</h1>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonDetails.id}.svg`} alt="" />
-            <div className="abilities">
-              <h2>Abilities:</h2>
-              {
-                pokemonDetails.abilities.map((ability, index) => (
-                  <div className="group" key={index}>
-                    <p>{ability.ability.name}</p>
-                  </div>
-                ))
-              }
-            </div>
-            <div className="types">
-              <h2>Types:</h2>
-              {
-                pokemonDetails.types.map((type, index) => (
-                  <div className="group" key={index}>
-                    <p>{type.type.name}</p>
-                  </div>
-                ))
-              }
-            </div>
-          </>
-      }
-    </div>
-  )
+        if (data && data) {
+            fetchPokemonData();
+        }
+    }, [data]);
+
+    return (
+        <>
+            {pokemonInfo && (
+                <>
+                   
+                  
+                    <div className="abilities">
+                        <h2 className="text-center">Abilities:</h2>
+                        <ul>
+                            {pokemonInfo.abilities.map((ability, index) => (
+                                <li key={index}>{ability.ability.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="stats">
+                        <h2>Stats:</h2>
+                        <ul>
+                            {pokemonInfo.stats.map((stat, index) => (
+                                <li key={index}>
+                                    {stat.stat.name}:
+                                    <LinearProgress
+                                        variant="determinate"
+                                        value={stat.base_stat}
+                                        valueBuffer={100}
+                                        sx={{ width: '200px', marginTop: '8px' }}
+                                        color="success"
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
+            )}
+        </>
+    )
 }
 
 export default Pokeinfo;
+
+

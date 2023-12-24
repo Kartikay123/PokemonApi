@@ -1,19 +1,57 @@
-.abilities{
-    width: 70%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
-.abilities .group{
-    background-color: #b74555;
-    color: white;
-    padding: 0.5rem;
-    font-size: 12px;
-    border-radius: 8px;
-    margin-left: 1rem;
-}
-.base-stat{
-    margin-top: 2rem;
-}
+/* Pokeinfo.css */
+
+/* General styles for the content inside the Dialog */
+h1 {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    margin-bottom: 10px; /* Add margin for spacing */
+  }
+  
+  .abilities ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .abilities li {
+    margin-bottom: 5px; /* Add margin between list items */
+  }
+  
+  .stats h2 {
+    font-size: 1.2rem; /* Adjust heading size */
+    margin-bottom: 8px; /* Add margin below heading */
+  }
+  
+  .stats ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .stats li {
+    margin-bottom: 5px; /* Add margin between list items */
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+  
+    .abilities li,
+    .stats li {
+      font-size: 0.9rem; /* Adjust font size for list items */
+    }
+  }
+  
+  /* Media query for even smaller screens, like mobile */
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-size: 1rem; /* Further adjust font size for smaller screens */
+    }
+  
+    .abilities li,
+    .stats li {
+      font-size: 0.8rem; /* Further adjust font size for list items */
+    }
+  }
+  .text-center{
+    text-align: center;
+  }
