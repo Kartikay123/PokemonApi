@@ -23,7 +23,7 @@ function App() {
   }, [pokemonData, searchfield]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=100')
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=500')
       .then((response) => response.json())
       .then(async (data) => {
         const pokemonList = await Promise.all(
